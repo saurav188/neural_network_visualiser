@@ -1,0 +1,28 @@
+body{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.visualiser_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#input_canvas{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    .row{
+        display:flex;
+        .cell{
+            width: 2.5px;
+            height: 2.5px;
+            background-color: black;
+        }
+        .active{
+            background-color: white;
+        }
+    }   
+}
