@@ -19,7 +19,24 @@ body {
           justify-content: center;
 }
 
-#input_canvas {
+.input_container {
+  width: 30vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.input_container .input_canvas {
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,19 +47,326 @@ body {
           flex-direction: column;
 }
 
-#input_canvas .row {
+.input_container .input_canvas .row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-#input_canvas .row .cell {
-  width: 2.5px;
-  height: 2.5px;
+.input_container .input_canvas .row .cell {
+  width: 1px;
+  height: 1px;
   background-color: black;
 }
 
-#input_canvas .row .active {
+.input_container .input_canvas .row .active {
   background-color: white;
+}
+
+.input_container .compressed {
+  -webkit-animation-name: compressed;
+          animation-name: compressed;
+  -webkit-animation-duration: 2.5s;
+          animation-duration: 2.5s;
+}
+
+.input_container .compressing {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  -webkit-animation-name: compressing;
+          animation-name: compressing;
+  -webkit-animation-duration: 2.5s;
+          animation-duration: 2.5s;
+}
+
+.output_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70vw;
+}
+
+.output_container .matrix_visualised {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 25px;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.output_container .matrix_visualised .output_drawing {
+  margin: 25px;
+}
+
+.output_container .first_layer_animator {
+  -webkit-animation-name: first_layer_animator;
+          animation-name: first_layer_animator;
+  -webkit-animation-delay: 2.5s;
+          animation-delay: 2.5s;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+}
+
+.output_container .second_layer_animator {
+  -webkit-animation-name: second_layer_animator;
+          animation-name: second_layer_animator;
+  -webkit-animation-delay: 7.5s;
+          animation-delay: 7.5s;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+}
+
+.output_container .first_layer_output {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 90%;
+  width: 0%;
+  opacity: 0;
+}
+
+.output_container .second_layer_output {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 60vh;
+  width: 0%;
+  opacity: 0;
+}
+
+.output_drawing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.output_drawing .output_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.output_drawing .output_row .output_cell {
+  width: 4px;
+  height: 4px;
+  background-color: black;
+}
+
+.output_drawing .output_row .output_active {
+  background-color: white;
+}
+
+@-webkit-keyframes compressed {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  45% {
+    opacity: 0.75;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes compressed {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  45% {
+    opacity: 0.75;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes compressing {
+  0% {
+    width: 112px;
+    height: 112px;
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    width: 112px;
+    height: 112px;
+    opacity: 1;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes compressing {
+  0% {
+    width: 112px;
+    height: 112px;
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    width: 112px;
+    height: 112px;
+    opacity: 1;
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes first_layer_animator {
+  0% {
+    width: 90%;
+    opacity: 1;
+    -webkit-transform: translateX(-75%) scale(0);
+            transform: translateX(-75%) scale(0);
+  }
+  25% {
+    width: 90%;
+    opacity: 1;
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  65% {
+    width: 90%;
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    width: 0%;
+    opacity: 0.5;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes first_layer_animator {
+  0% {
+    width: 90%;
+    opacity: 1;
+    -webkit-transform: translateX(-75%) scale(0);
+            transform: translateX(-75%) scale(0);
+  }
+  25% {
+    width: 90%;
+    opacity: 1;
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  65% {
+    width: 90%;
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    width: 0%;
+    opacity: 0.5;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes second_layer_animator {
+  0% {
+    width: 0%;
+    opacity: 0.7;
+  }
+  45% {
+    width: 90%;
+    opacity: 1;
+  }
+  75% {
+    width: 90%;
+    opacity: 1;
+  }
+  90% {
+    width: 10%;
+    opacity: 1;
+  }
+  100% {
+    width: 10%;
+    opacity: 1;
+  }
+}
+
+@keyframes second_layer_animator {
+  0% {
+    width: 0%;
+    opacity: 0.7;
+  }
+  45% {
+    width: 90%;
+    opacity: 1;
+  }
+  75% {
+    width: 90%;
+    opacity: 1;
+  }
+  90% {
+    width: 10%;
+    opacity: 1;
+  }
+  100% {
+    width: 10%;
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=style.css.map */

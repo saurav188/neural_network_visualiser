@@ -13,4 +13,3 @@ import os
 model_dir=Path(__file__).resolve().parent
 model=os.path.join(model_dir,"model","saved_model.h5")
 model = tf.keras.models.load_model(model)
-print(model.summary())

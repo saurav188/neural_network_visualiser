@@ -19,8 +19,6 @@ def get_output(request):
     sent_data=request.data
     matrix=sent_data["matrix"]
     output=return_output(matrix)
-    print("***************************")
     model_output=output_class(output)
     serialized_output=serializer_output(model_output)
-    print("***************************")
     return Response(serialized_output.data)

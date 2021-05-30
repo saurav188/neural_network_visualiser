@@ -19,7 +19,7 @@ body {
           justify-content: center;
 }
 
-#input_canvas {
+.input_container #input_canvas {
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,19 +30,51 @@ body {
           flex-direction: column;
 }
 
-#input_canvas .row {
+.input_container #input_canvas .row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-#input_canvas .row .cell {
-  width: 2px;
-  height: 2px;
+.input_container #input_canvas .row .cell {
+  width: 1px;
+  height: 1px;
   background-color: black;
 }
 
-#input_canvas .row .active {
+.input_container #input_canvas .row .active {
+  background-color: white;
+}
+
+.output_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.output_container .output_drawing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.output_container .output_drawing .output_row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.output_container .output_drawing .output_row .output_cell {
+  width: 4px;
+  height: 4px;
+  background-color: black;
+}
+
+.output_container .output_drawing .output_row .output_active {
   background-color: white;
 }
 /*# sourceMappingURL=style.css.map */

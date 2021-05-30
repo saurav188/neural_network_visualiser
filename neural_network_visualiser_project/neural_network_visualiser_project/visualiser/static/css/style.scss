@@ -10,19 +10,178 @@ body{
     align-items: center;
     justify-content: center;
 }
-#input_canvas{
-    margin: auto;
+.input_container{
+    width: 30vw;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .input_canvas{
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        .row{
+            display:flex;
+            .cell{
+                width: 1px;
+                height: 1px;
+                background-color: black;
+            }
+            .active{
+                background-color: white;
+            }
+        }   
+    }
+    .compressed{
+        animation-name: compressed;
+        animation-duration: 2.5s;
+    }
+    .compressing{
+        width: 0px;
+        height: 0px;
+        opacity: 0;   
+        animation-name: compressing;
+        animation-duration: 2.5s;
+    }
+}
+.output_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    .matrix_visualised{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding:25px;
+        height: 90vh;
+        overflow: hidden;
+        .output_drawing{
+            margin: 25px;
+        }
+    }
+    .first_layer_animator{
+        animation-name: first_layer_animator;
+        animation-delay: 2.5s;
+        animation-duration: 5s;
+    }
+    .second_layer_animator{
+        animation-name: second_layer_animator;
+        animation-delay: 7.5s;
+        animation-duration:5s;
+    }
+    .first_layer_output{
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        height: 90%;
+        width: 0%;
+        opacity: 0;
+    }
+    .second_layer_output{
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        height: 60vh;
+        width: 0%;
+        opacity: 0;
+    }
+    .neral_output{
+    }
+}
+.output_drawing{
     display: flex;
     flex-direction: column;
-    .row{
-        display:flex;
-        .cell{
-            width: 2.5px;
-            height: 2.5px;
+    .output_row{
+        display: flex;
+        .output_cell{
+            width: 4px;
+            height: 4px;
             background-color: black;
         }
-        .active{
+        .output_active{
             background-color: white;
         }
-    }   
+    }
+}
+
+@keyframes compressed{
+    0%{ 
+        width: 0px;
+        height: 0px;
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    45%{
+        opacity: 0.75;
+        transform: scale(0.5);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes compressing{
+    0%{
+        width: 112px;
+        height:112px;
+        opacity: 1;
+        transform: scale(1);
+    }
+    50%{
+        width: 112px;
+        height:112px;
+        opacity: 1;
+        transform: scale(0.5);
+    }
+    100%{
+        width: 0px;
+        height: 0px;
+        opacity: 0;   
+    }
+}
+@keyframes first_layer_animator {
+    0%{
+        width: 90%;
+        opacity: 1;
+        transform: translateX(-75%) scale(0);
+    }
+    25%{
+        width: 90%;
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    65%{
+        width: 90%;
+        opacity: 1;
+        transform: scale(1);
+    }
+    100%{
+        width: 0%;
+        opacity: 0.5;
+        transform: scale(1);
+    }
+}
+@keyframes second_layer_animator {
+    0%{
+        width: 0%;
+        opacity: 0.7;
+    }
+    45%{
+        width: 90%;
+        opacity: 1;
+    }
+    75%{
+        width: 90%;
+        opacity: 1;
+    }
+    90%{
+        width: 10%;
+        opacity: 1;
+    }
+    100%{
+        width: 10%;
+        opacity: 1;
+    }
 }

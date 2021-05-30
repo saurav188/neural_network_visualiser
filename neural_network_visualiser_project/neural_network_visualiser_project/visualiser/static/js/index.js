@@ -1,7 +1,7 @@
-const drawing_pad=document.getElementById("input_canvas");
+const drawing_pad=document.getElementsByClassName("input_canvas")[0];
 var drawing_pad_content="";
-var no_cols=28*2;
-var no_rows=28*2;
+var no_cols=28*4;
+var no_rows=28*4;
 //adding pixels in the canvas where the drawing takes place
 for(var i=0;i<(no_rows);i++){
     drawing_pad_content=drawing_pad_content+'<div class="row">';
@@ -14,7 +14,6 @@ drawing_pad.innerHTML=drawing_pad_content;
 
 function get_drawing(){
     var rows=Array.from(document.getElementsByClassName("row"));
-    console.log(rows[0].children)
     var drawing=[];
     for(var i=0;i<no_rows;i++){
         drawing.push([]);
@@ -69,6 +68,38 @@ function compress(matrix){
     return output_matrix;
 };
 
+//geting visual content 1st and 2nd layer output
+function matrix_to_divs(matrix){
+    var no_rows=matrix.length;
+    var no_cols=matrix[0].length;
+    var drawing='<div class="output_drawing">';
+    for(var i=0;i<no_rows;i++){
+        drawing+='<div class="output_row">';
+        for(var j=0;j<no_cols;j++){
+            if(matrix[i][j]==0){
+                drawing+='<div class="output_cell"></div>'
+            }else{
+                drawing+='<div class="output_cell output_active"></div>'
+            }
+        };
+        drawing+='</div>';
+    };
+    drawing+='</div>';
+    return drawing;
+};
+
+//gets the div with the visualisation of all the layer matrix
+function get_layer_drawing(matrixes){
+    var drawing='';
+    drawing+='<div class="matrix_visualised">';
+    for(var i=0;i<matrixes.length;i++){
+        drawing+=matrix_to_divs(matrixes[i]);
+    };
+    drawing+='</div>';
+    return drawing;
+};
+
+//sending data the server and getting the output
 async function get_output(matrix) {
     const rawResponse = await fetch('http://localhost:8000/api/get_output/', {
       method: 'POST',
@@ -79,10 +110,17 @@ async function get_output(matrix) {
       body: JSON.stringify({"matrix":matrix})
     });
     const content = await rawResponse.json();
-  
-    console.log(content);
-    return content
-  };
+    const first_layer_output=await content.body.first_layer_output;
+    const second_layer_output=await content.body.second_layer_ouput;
+    const actual_output=await content.body.output;
+    const first_layer_output_drawing=get_layer_drawing(first_layer_output);
+    document.getElementsByClassName("first_layer_output")[0].innerHTML=first_layer_output_drawing;
+    document.getElementsByClassName("first_layer_output")[0].classList.add("first_layer_animator");
+    const second_layer_output_drawing=get_layer_drawing(second_layer_output);
+    document.getElementsByClassName("second_layer_output")[0].innerHTML=second_layer_output_drawing;
+    document.getElementsByClassName("second_layer_output")[0].classList.add("second_layer_animator");
+    console.log(actual_output)
+};
 
 //handling mouse click events to draw in the drawing pad
 var rows=document.getElementsByClassName("rows");
@@ -114,6 +152,9 @@ var visualise_btn=document.getElementById("visualise_btn");
 visualise_btn.addEventListener("click",()=>{
     var drawing=get_drawing();
     var compressed_drawing=compress(drawing);
-    var output_received= get_output(compressed_drawing)
-    console.log(output_received)
+    var drawn_matrix=matrix_to_divs(compressed_drawing);
+    document.getElementsByClassName("compressed_drawing")[0].innerHTML+=drawn_matrix;
+    document.getElementsByClassName("compressed_drawing")[0].classList.add("compressed");
+    drawing_pad.classList.add("compressing");
+    get_output(compressed_drawing)
 })
