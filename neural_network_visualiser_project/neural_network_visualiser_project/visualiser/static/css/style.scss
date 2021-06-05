@@ -2,23 +2,31 @@ body{
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    background-color: rgb(56, 55, 55);
+}
+.title_container{
+    width: 100vw;
+    height: 10vh;
+    background-color: black;
 }
 .visualiser_container{
     width: 100vw;
-    height: 100vh;
+    max-height: 90vh;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .input_container{
     width: 30vw;
+    height: 90vh;
     display:flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 
     .input_canvas{
-        margin: auto;
         display: flex;
         flex-direction: column;
         .row{
@@ -32,6 +40,9 @@ body{
                 background-color: white;
             }
         }   
+    }
+    #visualise_btn{
+        margin-top: 20px;
     }
     .compressed{
         animation-name: compressed;
@@ -63,12 +74,10 @@ body{
     }
     .first_layer_animator{
         animation-name: first_layer_animator;
-        animation-delay: 2.5s;
         animation-duration: 5s;
     }
     .second_layer_animator{
         animation-name: second_layer_animator;
-        animation-delay: 7.5s;
         animation-duration:5s;
     }
     .first_layer_output{
@@ -87,8 +96,109 @@ body{
         width: 0%;
         opacity: 0;
     }
-    .neral_output{
+    .neural_output{
+        width: 100%;
+        display: block;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        .first_neuron_layer{
+            width: 50px;
+            height: auto;
+            display: flex;
+            margin-right:10%;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content:space-around;
+        }
+        .second_neuron_layer{
+            width: 50px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            margin-right:10%;
+        }
+        .number_neuron_layer{
+            width: 50px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            margin-right:10%;
+            .neuron{
+                color: black;
+                display: flex;
+                align-items: center;
+                justify-content:center;
+            }
+        }
+        .output_neuron_layer{
+            width: 50px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            margin-right:10%;
+            .neuron{
+                color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+            .output_number{
+                animation-name: output_number;
+                animation-duration: 5000ms;
+                animation-iteration-count: 1;
+                transform: scale(3) rotateY(360deg);
+            }
+        }
+        .neuron{
+            width: 20px;
+            height: 20px;
+            margin:15px 0px;
+            border-radius: 50%;
+            background-color: white;
+        }
     }
+    .neural_hidden{
+        display: none;
+    }
+    .neural_animator{
+        width: 100%;
+        display: block;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        animation-name: neural_animator;
+        animation-duration: 4000ms;
+    }
+    .line{
+        background-color: white;
+        position: absolute;
+        height: 1px;
+        margin: 0px;
+        padding: 0px;
+        z-index: -1;
+    }
+    .line_hide{
+        display: none;
+    }
+    .line_animate{
+        transform: scale(1);
+        transition-duration: 200ms;
+        background: linear-gradient(to right,white ,black,white);
+        background-size: 300%;
+        background-position: -30% 0%;
+        animation-name: line_animator;
+        animation-duration: 5s;
+        animation-iteration-count: 1;
+    }
+    
 }
 .output_drawing{
     display: flex;
@@ -185,3 +295,29 @@ body{
         opacity: 1;
     }
 }
+@keyframes neural_animator {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 100%;
+    }
+}
+@keyframes line_animator{
+    0%{
+        background-position: 100% 0%;
+    }
+    100%{
+        background-position: -30% 0%;
+    }
+}
+@keyframes output_number {
+    0%{
+        transform: scale(1) rotateY(0deg);
+    }
+    100%{
+        transform: scale(3) rotateY(360deg);
+    }
+}
+
+//screem size less than 400px

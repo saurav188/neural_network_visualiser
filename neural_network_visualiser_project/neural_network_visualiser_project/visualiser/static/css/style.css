@@ -3,11 +3,19 @@ body {
           box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  background-color: #383737;
+}
+
+.title_container {
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
 }
 
 .visualiser_container {
   width: 100vw;
-  height: 100vh;
+  max-height: 90vh;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,6 +29,7 @@ body {
 
 .input_container {
   width: 30vw;
+  height: 90vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,6 +37,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -37,7 +48,6 @@ body {
 }
 
 .input_container .input_canvas {
-  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -61,6 +71,10 @@ body {
 
 .input_container .input_canvas .row .active {
   background-color: white;
+}
+
+.input_container #visualise_btn {
+  margin-top: 20px;
 }
 
 .input_container .compressed {
@@ -115,8 +129,6 @@ body {
 .output_container .first_layer_animator {
   -webkit-animation-name: first_layer_animator;
           animation-name: first_layer_animator;
-  -webkit-animation-delay: 2.5s;
-          animation-delay: 2.5s;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
 }
@@ -124,8 +136,6 @@ body {
 .output_container .second_layer_animator {
   -webkit-animation-name: second_layer_animator;
           animation-name: second_layer_animator;
-  -webkit-animation-delay: 7.5s;
-          animation-delay: 7.5s;
   -webkit-animation-duration: 5s;
           animation-duration: 5s;
 }
@@ -158,6 +168,196 @@ body {
   height: 60vh;
   width: 0%;
   opacity: 0;
+}
+
+.output_container .neural_output {
+  width: 100%;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.output_container .neural_output .first_neuron_layer {
+  width: 50px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 10%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.output_container .neural_output .second_neuron_layer {
+  width: 50px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 10%;
+}
+
+.output_container .neural_output .number_neuron_layer {
+  width: 50px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 10%;
+}
+
+.output_container .neural_output .number_neuron_layer .neuron {
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.output_container .neural_output .output_neuron_layer {
+  width: 50px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 10%;
+}
+
+.output_container .neural_output .output_neuron_layer .neuron {
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.output_container .neural_output .output_neuron_layer .output_number {
+  -webkit-animation-name: output_number;
+          animation-name: output_number;
+  -webkit-animation-duration: 5000ms;
+          animation-duration: 5000ms;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-transform: scale(3) rotateY(360deg);
+          transform: scale(3) rotateY(360deg);
+}
+
+.output_container .neural_output .neuron {
+  width: 20px;
+  height: 20px;
+  margin: 15px 0px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.output_container .neural_hidden {
+  display: none;
+}
+
+.output_container .neural_animator {
+  width: 100%;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-animation-name: neural_animator;
+          animation-name: neural_animator;
+  -webkit-animation-duration: 4000ms;
+          animation-duration: 4000ms;
+}
+
+.output_container .line {
+  background-color: white;
+  position: absolute;
+  height: 1px;
+  margin: 0px;
+  padding: 0px;
+  z-index: -1;
+}
+
+.output_container .line_hide {
+  display: none;
+}
+
+.output_container .line_animate {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(black), to(white));
+  background: linear-gradient(to right, white, black, white);
+  background-size: 300%;
+  background-position: -30% 0%;
+  -webkit-animation-name: line_animator;
+          animation-name: line_animator;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
 }
 
 .output_drawing {
@@ -367,6 +567,64 @@ body {
   100% {
     width: 10%;
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes neural_animator {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes neural_animator {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes line_animator {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: -30% 0%;
+  }
+}
+
+@keyframes line_animator {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: -30% 0%;
+  }
+}
+
+@-webkit-keyframes output_number {
+  0% {
+    -webkit-transform: scale(1) rotateY(0deg);
+            transform: scale(1) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: scale(3) rotateY(360deg);
+            transform: scale(3) rotateY(360deg);
+  }
+}
+
+@keyframes output_number {
+  0% {
+    -webkit-transform: scale(1) rotateY(0deg);
+            transform: scale(1) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: scale(3) rotateY(360deg);
+            transform: scale(3) rotateY(360deg);
   }
 }
 /*# sourceMappingURL=style.css.map */
